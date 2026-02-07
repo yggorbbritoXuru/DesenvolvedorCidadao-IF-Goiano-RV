@@ -1,0 +1,444 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matriz de Avaliação de Impacto RPA - Versão 2.0</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Navegação -->
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('welcome')">🏠 Bem-vindo</button>
+      <button class="tab" onclick="showTab('contexto')">🎯 Contexto</button>
+      <button class="tab" onclick="showTab('parametros')">⚙️ Parâmetros</button>
+      <button class="tab" onclick="showTab('analise')">📊 Análise de Processo</button>
+      <button class="tab" onclick="showTab('impacto')">⭐ Impacto Qualitativo</button>
+      <button class="tab" onclick="showTab('resultados')">📈 Resultados</button>
+    </div>
+
+    <!-- Tab 1: Bem-vindo -->
+    <div id="welcome" class="tab-content active">
+      <div class="welcome-header">
+        <div class="emoji">⚙️📊</div>
+        <h1>Matriz de Avaliação de Impacto RPA para RH</h1>
+        <h2 class="subtitle">Versão 2.0 - Dissertação de Mestrado Profissional</h2>
+        <p class="subtitle">
+          Foco em Citizen Developers com opções para contextos específicos
+        </p>
+      </div>
+
+      <div class="intro-text">
+        <h3>Objetivo da Versão 2.0</h3>
+        <p>
+          Esta versão mantém o foco principal em <strong>Citizen Developers</strong>
+          (profissionais de RH sem conhecimento técnico), mas expande para contextos
+          organizacionais específicos quando necessário.
+        </p>
+        <p>
+          <strong>Padrão:</strong> Benefícios universais de RH (experiência do candidato,
+          redução de viés, qualidade da contratação).
+        </p>
+        <p>
+          <strong>Opcional:</strong> Se você trabalha em Setor Público, Consultoria, ONG ou
+          Clube de Serviço, pode ativar benefícios específicos.
+        </p>
+      </div>
+
+      <div class="steps">
+        <h3>Como Usar</h3>
+        <ol>
+          <li><strong>Defina seu Contexto</strong> – Selecione Citizen Developer ou um contexto específico.</li>
+          <li><strong>Configure Parâmetros</strong> – Veja e ajuste benefícios e pesos.</li>
+          <li><strong>Analise seu Processo</strong> – Preencha dados de tempo e (opcionalmente) custos.</li>
+          <li><strong>Avalie Impacto</strong> – Atribua notas aos benefícios intangíveis.</li>
+          <li><strong>Veja Resultados</strong> – Interprete a matriz 2×2 e a recomendação.</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Tab 2: Contexto -->
+    <div id="contexto" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Contexto Organizacional</h2>
+
+        <div class="instructions">
+          <strong>Instruções</strong>
+          <ul>
+            <li><strong>Selecione "Citizen Developer"</strong> se você é profissional de RH sem conhecimento técnico (padrão).</li>
+            <li>Selecione um contexto específico apenas se realmente se aplica à sua organização.</li>
+            <li>Contextos específicos mostram benefícios adicionais relevantes na etapa de impacto.</li>
+          </ul>
+        </div>
+
+        <h3 class="section-subtitle">Selecione seu Perfil</h3>
+
+        <div class="organization-type-selector" id="orgTypeSelector">
+          <!-- preenchido via app.js -->
+        </div>
+
+        <div id="contextSpecificSection" class="context-specific-section">
+          <h4>Configuração para Contexto Específico</h4>
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="tamanhoOrganizacao" class="form-label">Tamanho da Organização</label>
+              <select id="tamanhoOrganizacao" class="form-select">
+                <option value="">Selecione...</option>
+                <option value="pequena">Pequena (até 50 colaboradores)</option>
+                <option value="media">Média (51–500 colaboradores)</option>
+                <option value="grande">Grande (501–5000 colaboradores)</option>
+                <option value="corporacao">Corporação (mais de 5000 colaboradores)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="setorAtuacao" class="form-label">Setor de Atuação</label>
+              <select id="setorAtuacao" class="form-select">
+                <option value="">Selecione...</option>
+                <option value="servicos">Serviços</option>
+                <option value="industria">Indústria</option>
+                <option value="comercio">Comércio</option>
+                <option value="tecnologia">Tecnologia</option>
+                <option value="saude">Saúde</option>
+                <option value="educacao">Educação</option>
+                <option value="financeiro">Financeiro</option>
+                <option value="governo">Governo</option>
+                <option value="terceiro-setor">Terceiro Setor</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Parâmetros -->
+    <div id="parametros" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Parâmetros – Benefícios Intangíveis</h2>
+
+        <div class="instructions">
+          <strong>Instruções</strong>
+          <ul>
+            <li><strong>Benefícios principais</strong> aparecem para todos os contextos.</li>
+            <li><strong>Benefícios específicos</strong> aparecem apenas se você selecionou um contexto diferente de Citizen Developer.</li>
+            <li><strong>Legenda de Pesos</strong> – 1 Desejável, 2 Importante, 3 Crítico.</li>
+          </ul>
+        </div>
+
+        <div class="table-container">
+          <table id="parametrosTable">
+            <thead>
+              <tr>
+                <th style="width:50px;">ID</th>
+                <th>Benefício Intangível</th>
+                <th style="width:80px;">Peso (1–3)</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody id="parametrosBody">
+              <!-- preenchido via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Análise de Processo -->
+    <div id="analise" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Análise de Processo</h2>
+
+        <h3 class="section-subtitle">SEÇÃO 1: Identificação</h3>
+        <div class="grid-2">
+          <div class="form-group">
+            <label for="nomeProcesso" class="form-label">Nome do Processo</label>
+            <input type="text" id="nomeProcesso" class="form-input"
+                   placeholder="Ex: Triagem de Currículos para Vaga de Analista" />
+          </div>
+          <div class="form-group">
+            <label for="areaResponsavel" class="form-label">Área Responsável</label>
+            <input type="text" id="areaResponsavel" class="form-input"
+                   placeholder="Ex: RH – Recrutamento e Seleção" />
+          </div>
+          <div class="form-group">
+            <label for="responsavelProcesso" class="form-label">Responsável pelo Processo</label>
+            <input type="text" id="responsavelProcesso" class="form-input"
+                   placeholder="Nome do responsável" />
+          </div>
+          <div class="form-group">
+            <label for="dataAnalise" class="form-label">Data da Análise</label>
+            <input type="date" id="dataAnalise" class="form-input" />
+          </div>
+          <div class="form-group">
+            <label for="desenvolvedor" class="form-label">Desenvolvedor da Automação</label>
+            <input type="text" id="desenvolvedor" class="form-input"
+                   placeholder="Seu nome ou N/A" />
+          </div>
+          <div class="form-group">
+            <label for="status" class="form-label">Status</label>
+            <select id="status" class="form-select">
+              <option value="Em análise">Em análise</option>
+              <option value="Aprovado">Aprovado</option>
+              <option value="Em desenvolvimento">Em desenvolvimento</option>
+              <option value="Implementado">Implementado</option>
+            </select>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">SEÇÃO 2: Descrição do Processo</h3>
+        <div class="form-group">
+          <label for="processoAsIs" class="form-label">Processo Atual (AS-IS)</label>
+          <textarea id="processoAsIs" class="form-textarea" maxlength="500"
+                    placeholder="Descreva o passo a passo atual da execução manual (máx. 500 caracteres)."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="processoToBe" class="form-label">Processo Automatizado (TO-BE)</label>
+          <textarea id="processoToBe" class="form-textarea" maxlength="500"
+                    placeholder="Descreva como funcionará após a automação (máx. 500 caracteres)."></textarea>
+        </div>
+
+        <h3 class="section-subtitle">SEÇÃO 3: Medição de Tempo</h3>
+        <div class="grid-3">
+          <div class="form-group">
+            <label for="tempoManual" class="form-label">Tempo Execução Manual (horas) *</label>
+            <input type="number" id="tempoManual" class="form-input"
+                   step="0.01" min="0" inputmode="decimal"
+                   placeholder="Ex: 2,5" oninput="calcularTempo()" />
+            <small style="color:var(--color-text-secondary);">Quanto tempo leva hoje?</small>
+          </div>
+          <div class="form-group">
+            <label for="tempoAutomatizado" class="form-label">Tempo Execução Automatizada (horas) *</label>
+            <input type="number" id="tempoAutomatizado" class="form-input"
+                   step="0.01" min="0" inputmode="decimal"
+                   placeholder="Ex: 0,5" oninput="calcularTempo()" />
+            <small style="color:var(--color-text-secondary);">Quanto tempo levará com o robô?</small>
+          </div>
+          <div class="form-group">
+            <label for="tempoSupervisao" class="form-label">Tempo de Supervisão Humana (horas) *</label>
+            <input type="number" id="tempoSupervisao" class="form-input"
+                   step="0.01" min="0" inputmode="decimal"
+                   placeholder="Ex: 0,25" oninput="calcularTempo()" />
+            <small style="color:var(--color-text-secondary);">Tempo para revisar e aprovar?</small>
+          </div>
+          <div class="form-group">
+            <label for="frequenciaQtd" class="form-label">Frequência – Quantidade *</label>
+            <input type="number" id="frequenciaQtd" class="form-input"
+                   min="1" inputmode="decimal" placeholder="Ex: 12"
+                   oninput="calcularTempo()" />
+            <small style="color:var(--color-text-secondary);">Quantas vezes?</small>
+          </div>
+          <div class="form-group">
+            <label for="frequenciaPeriodo" class="form-label">Frequência – Período *</label>
+            <select id="frequenciaPeriodo" class="form-select"
+                    onchange="calcularTempo()">
+              <option value="">Selecione...</option>
+              <option value="Por dia">Por dia</option>
+              <option value="Por semana">Por semana</option>
+              <option value="Por mês">Por mês</option>
+              <option value="Por ano">Por ano</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="calc-result" id="resultadosTempo" style="display:none;">
+          <h4>Cálculos Automáticos</h4>
+          <div class="grid-2">
+            <div>
+              <p><strong>Tempo economizado por execução:</strong>
+                 <span id="tempoEconomizado">--</span> horas</p>
+              <p><strong>Percentual de redução:</strong>
+                 <span id="percentualReducao">--</span></p>
+            </div>
+            <div>
+              <p><strong>Tempo economizado anual:</strong>
+                 <span id="tempoEconomizadoAnual">--</span> horas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="instructions" style="background:#fff3cd; border-left-color:var(--color-orange);">
+            <strong>SEÇÃO OPCIONAL</strong><br />
+            Para Citizen Developers, recomendamos focar principalmente em
+            <strong>TEMPO ECONOMIZADO</strong>. Preencha os custos apenas se tiver
+            esses dados disponíveis.
+          </div>
+
+          <h3 class="section-subtitle">SEÇÃO 4: Custos (Opcional)</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label for="custoDesenvolvimento" class="form-label">Custo de Desenvolvimento (R$)</label>
+              <input type="number" id="custoDesenvolvimento" class="form-input"
+                     step="0.01" min="0" inputmode="decimal"
+                     placeholder="Opcional" oninput="calcularROI()" />
+            </div>
+            <div class="form-group">
+              <label for="tempoDesenvolvimento" class="form-label">Tempo de Desenvolvimento (horas)</label>
+              <input type="number" id="tempoDesenvolvimento" class="form-input"
+                     step="0.01" min="0" inputmode="decimal"
+                     placeholder="Opcional" />
+            </div>
+            <div class="form-group">
+              <label for="custoManutencao" class="form-label">Custo Mensal de Manutenção (R$)</label>
+              <input type="number" id="custoManutencao" class="form-input"
+                     step="0.01" min="0" inputmode="decimal"
+                     placeholder="Opcional" oninput="calcularROI()" />
+            </div>
+            <div class="form-group">
+              <label for="valorHora" class="form-label">Valor da Hora Economizada (R$)</label>
+              <input type="number" id="valorHora" class="form-input"
+                     step="0.01" min="0" inputmode="decimal"
+                     placeholder="Opcional" oninput="calcularROI()" />
+            </div>
+          </div>
+
+          <div class="calc-result" id="resultadosROI" style="display:none;">
+            <h4>Cálculos Financeiros</h4>
+            <div class="grid-2">
+              <div>
+                <p><strong>Economia Mensal:</strong> R$
+                   <span id="economiaMensal">--</span></p>
+                <p><strong>Economia Anual:</strong> R$
+                   <span id="economiaAnual">--</span></p>
+              </div>
+              <div>
+                <p><strong>ROI:</strong> <span id="roi">--</span></p>
+                <p><strong>Payback:</strong> <span id="payback">--</span> meses</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Impacto Qualitativo -->
+    <div id="impacto" class="tab-content">
+      <div class="section">
+        <h2 class="section-title">Impacto Qualitativo</h2>
+
+        <div class="instructions">
+          <strong>Instruções</strong>
+          <ul>
+            <li>Avalie cada benefício considerando o impacto esperado ou real da automação.</li>
+            <li>Escala de avaliação: 0–3 Baixo, 4–6 Moderado, 7–8 Alto, 9–10 Muito Alto.</li>
+            <li>Use o campo de observações para registrar exemplos concretos.</li>
+          </ul>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:50px;">ID</th>
+                <th>Benefício Intangível</th>
+                <th style="width:80px;">Peso</th>
+                <th style="width:120px;">Sua Avaliação (0–10)</th>
+                <th style="width:120px;">Pontuação Ponderada</th>
+                <th>Observações</th>
+              </tr>
+            </thead>
+            <tbody id="impactoBody">
+              <!-- preenchido via app.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="calc-result">
+          <h4>Indicadores Calculados</h4>
+          <div class="grid-2">
+            <div>
+              <p><strong>Score Total:</strong>
+                 <span id="scoreTotal" style="font-size:24px;">0.0</span> / 100</p>
+            </div>
+            <div>
+              <p><strong>Classificação:</strong>
+                 <span id="classificacao" style="font-size:20px;">--</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="impactoChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 6: Resultados -->
+    <div id="resultados" class="tab-content">
+      <div class="section">
+        <!-- Botões de ação -->
+        <div style="display:flex; gap:12px; justify-content:flex-end; margin-bottom:16px; flex-wrap:wrap;">
+          <button class="btn-action" onclick="exportarPDF()">📄 Exportar Relatório PDF</button>
+          <button class="btn-action" onclick="salvarJSON()">💾 Salvar Dados (JSON)</button>
+          <button class="btn-action" onclick="limparReiniciar()">🔄 Limpar e Reiniciar</button>
+        </div>
+
+        <h2 class="section-title">Resultados e Decisão</h2>
+
+        <h3 class="section-subtitle">SEÇÃO 1: Resumo Executivo</h3>
+        <div class="cards-grid">
+          <div class="card card-blue">
+            <div class="card-icon">⏱️</div>
+            <div class="card-title">Economia de Tempo</div>
+            <div id="cardTempo"></div>
+          </div>
+          <div class="card card-green">
+            <div class="card-icon">💰</div>
+            <div class="card-title">ROI Financeiro</div>
+            <div id="cardROI"></div>
+          </div>
+          <div class="card card-purple">
+            <div class="card-icon">⭐</div>
+            <div class="card-title">Impacto Qualitativo</div>
+            <div id="cardImpacto"></div>
+          </div>
+        </div>
+
+        <h3 class="section-subtitle">SEÇÃO 2: Matriz de Decisão 2×2</h3>
+        <div class="decision-matrix" id="matrizDecisao"></div>
+
+        <div id="recomendacao"
+             style="padding:var(--space-24); background:var(--color-light-blue); border-radius:var(--radius-base); margin-top:var(--space-16);">
+        </div>
+
+        <h3 class="section-subtitle">SEÇÃO 3: Próximos Passos</h3>
+        <ul class="checklist" id="checklist">
+          <li class="checked">☑ Análise completa</li>
+          <li onclick="toggleCheck(this)">☐ Aprovação de stakeholders</li>
+          <li onclick="toggleCheck(this)">☐ Desenvolvimento da automação</li>
+          <li onclick="toggleCheck(this)">☐ Teste piloto</li>
+          <li onclick="toggleCheck(this)">☐ Implementação</li>
+          <li onclick="toggleCheck(this)">☐ Monitoramento de resultados (1º mês)</li>
+          <li onclick="toggleCheck(this)">☐ Ajustes e melhorias</li>
+        </ul>
+
+        <h3 class="section-subtitle">SEÇÃO 4: Gráficos e Visualizações</h3>
+
+        <h4>Comparação Tempo Manual vs Automatizado</h4>
+        <div class="chart-container">
+          <canvas id="tempoChart"></canvas>
+        </div>
+
+        <h4>Distribuição de Impacto por Benefício</h4>
+        <div class="chart-container">
+          <canvas id="beneficiosChart"></canvas>
+        </div>
+
+        <h4>Medidor de Impacto Qualitativo</h4>
+        <div class="gauge-container">
+          <canvas id="gaugeChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Versão 2.0 – Dissertação de Mestrado Profissional – Foco em Citizen Developers
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
